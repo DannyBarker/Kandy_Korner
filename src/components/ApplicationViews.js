@@ -5,28 +5,31 @@ import EmployeeList from "./employees/EmployeeList"
 import CandyList from "./candies/CandyList"
 
 export default class ApplicationViews extends Component {
-  storeArray = [
-    {id: 1, name: "Kandy Korner", location: "500 Kandy Way"}
-  ]
 
-  employeeArray = [
-    {id: 1, name: "Kandice"}
-  ]
-
-  candyTypeArray = [
-    {id: 1, type: "Kernel"},
-    {id: 2, type: "Sucker"}
-  ]
-
-  candyArray = [
-    {id: 1, candy: "Kandy Korn", candyTypeId: 2}
-  ]
 
   state = {
-    stores: this.storeArray,
-    employees: this.employeeArray,
-    candyType: this.candyTypeArray,
-    candies: this.candyArray
+    stores: [],
+    employees: [],
+    candyType: [],
+    candies: []
+  }
+
+  componentDidMount() {
+    const newState = {}
+
+    fetch("http://localhost:5002/stores")
+    .then(r=> r.json())
+    .then(stores => newState.stores = stores)
+    .then(() => fetch("http://localhost:5002/employees")
+    .then(r => r.json()))
+    .then(employees => newState.employees = employees)
+    .then(() => fetch("http://localhost:5002/candyType")
+    .then(r => r.json()))
+    .then(candyType => newState.candyType = candyType)
+    .then(() => fetch("http://localhost:5002/candies")
+    .then(r => r.json()))
+    .then(candies => newState.candies = candies)
+    .then(() => this.setState(newState))
   }
 
   render() {

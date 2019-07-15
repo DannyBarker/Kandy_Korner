@@ -1,0 +1,15 @@
+{
+  "stores" : [
+    {"id": 1, "name": "Kandy Korner", "location": "500 Kandy Way"}
+  ],
+  "employees" : [
+    {"id": 1, "name": "Kandice"}
+  ],
+  "candyType" : [
+    {"id": 1, "type": "Kernel"},
+    {"id": 2, "type": "Sucker"}
+  ],
+  "candies" : [
+    {"id": 1, "candy": "Kandy Korn", "candyTypeId": 2}
+  ]
+}
