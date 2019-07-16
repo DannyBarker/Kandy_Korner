@@ -14,6 +14,7 @@ export default class CandyList extends Component {
                   .type
                 }
               </h5>
+            <button onClick={() => this.props.deleteKandy(candy.id)}>Delete</button>
           </div>
         )
       }

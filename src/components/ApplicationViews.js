@@ -32,6 +32,16 @@ export default class ApplicationViews extends Component {
     .then(() => this.setState(newState))
   }
 
+  deleteKandy = (id) => {
+    return fetch(`http://localhost:5002/candies/${id}`,{
+      method: "DELETE"
+    })
+    .then(e => e.json())
+    .then(() => fetch("http://localhost:5002/candies"))
+    .then(e => e.json())
+    .then(candy => this.setState({candies: candy}))
+  }
+
   render() {
     return(
       <React.Fragment>
@@ -42,7 +52,7 @@ export default class ApplicationViews extends Component {
           return <EmployeeList employees={this.state.employees} />
         }} />
         <Route path="/candies" render={(props) => {
-          return <CandyList candies={this.state.candies} candyType={this.state.candyType} />
+          return <CandyList candies={this.state.candies} candyType={this.state.candyType} deleteKandy={this.deleteKandy} />
         }} />
       </React.Fragment>
     )
